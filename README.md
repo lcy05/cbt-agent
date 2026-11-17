@@ -1,5 +1,7 @@
 # cbt-agent
 
+[![CI](https://github.com/lcy05/cbt-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/lcy05/cbt-agent/actions/workflows/ci.yml) [![Release](https://img.shields.io/github/v/release/lcy05/cbt-agent)](https://github.com/lcy05/cbt-agent/releases) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Java 17](https://img.shields.io/badge/Java-17-orange.svg)](https://openjdk.org/projects/jdk/17/)
+
 一个基于 **Spring AI Alibaba Graph** 的「最小介入」认知行为自助练习闭环。后端用有向图驱动 10 个阶段，把所有模型输出约束在严格 JSON 与枚举白名单内；前端把走过的每一步画成可展开的思维链轨道。
 
 > 当前版本：**0.1.0**。面向本地运行与开发，未提供用户认证、多租户或云端部署。
