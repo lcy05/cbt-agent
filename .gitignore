@@ -1,0 +1,25 @@
+# ---------------------------------------------------------------- build
+target/
+*.log
+
+# ---------------------------------------------------------------- IDE
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# ---------------------------------------------------------------- internal
+# Internal design notes (including the original prompt source document) and
+# working memory. They are deliberately not part of the public repository.
+cbt-agent-docs/
+.workbuddy/
+
+# ---------------------------------------------------------------- secrets
+# config.cmd carries the live DeepSeek key and the MySQL password.
+# It must never be committed. The committed template is config.example.cmd.
+# If it was ever staged by mistake:  git rm --cached config.cmd
+config.cmd
+/config.cmd
+.env
+*.pem

@@ -1,0 +1,23 @@
+# Normalize line endings so a fresh clone builds cleanly on every platform.
+# Default: store LF in the repository and check out LF.
+* text=auto eol=lf
+
+# Windows batch scripts MUST stay CRLF or cmd.exe mis-parses rem/setlocal
+# ('elayedExpansion' is not recognized) and echo lines break.
+*.cmd text eol=crlf
+
+# Prompt assets are SHA-256 locked AND checked to be LF-only by PromptAssetTest.
+# A CRLF checkout on Windows would fail the test suite. Keep them explicitly LF.
+src/main/resources/prompts/*.txt text eol=lf
+
+# Everything else stays LF: sources, docs, config templates, CI.
+*.java   text eol=lf
+*.md     text eol=lf
+*.yml    text eol=lf
+*.xml    text eol=lf
+*.sql    text eol=lf
+*.properties text eol=lf
+*.css    text eol=lf
+*.js     text eol=lf
+*.html   text eol=lf
+*.example text eol=lf

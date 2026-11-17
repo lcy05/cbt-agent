@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cbt-agent
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${CBT_DB_URL:jdbc:mysql://127.0.0.1:3306/cbt_agent?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    username: ${CBT_DB_USERNAME:root}
+    password: ${CBT_DB_PASSWORD:}
+  # ---------------------------------------------------------------------------
+  # LLM: OpenAI-compatible protocol, DeepSeek by default.
+  #
+  #   AI_BASE_URL   site / endpoint   default https://api.deepseek.com
+  #   AI_API_KEY    key               falls back to DEEPSEEK_API_KEY
+  #   AI_MODEL      model name        default deepseek-chat
+  #
+  # Switching provider = three env vars, no code change. The client appends
+  # /v1/chat/completions to AI_BASE_URL, so pass the bare host:
+  #   DeepSeek  https://api.deepseek.com                          deepseek-chat | deepseek-reasoner
+  #   Kimi      https://api.moonshot.cn                           moonshot-v1-8k
+  #   GLM       https://open.bigmodel.cn/api/paas/v4              glm-4-plus
+  #   Ollama    http://127.0.0.1:11434/v1                         qwen2.5:14b
+  #
+  # api-key carries a placeholder default so the app still boots with no key:
+  # page, graph and checkpoint tables all work, only the model call returns 401.
+  # With an empty default instead, Spring fails at bean creation and nothing starts.
+  # ---------------------------------------------------------------------------
+  ai:
+    openai:
+      base-url: ${AI_BASE_URL:https://api.deepseek.com}
+      api-key: ${AI_API_KEY:${DEEPSEEK_API_KEY:sk-not-configured}}
+      chat:
+        options:
+          model: ${AI_MODEL:deepseek-chat}
+          temperature: 0.3
+    model:
+      embedding: none        # no embedding model in this app; keeps autoconfig quiet
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+
+logging:
+  level:
+    com.luoch.cbt: INFO

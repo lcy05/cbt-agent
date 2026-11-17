@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CBT 最小介入闭环 · 思维链</title>
+<link rel="stylesheet" href="./app.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ 左栏：思维链轨道 ============ -->
+  <aside class="rail">
+    <header class="rail-head">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 3a9 9 0 0 1 0 18" />
+        </svg>
+        <div class="brand-text">
+          <h1>最小介入闭环</h1>
+          <p>认知行为自助 · 思维链</p>
+        </div>
+      </div>
+      <div class="rail-meta">
+        <span class="conn" id="conn"><i></i><span>检测中</span></span>
+        <span class="mode-tag" id="modeTag" hidden>演示数据</span>
+      </div>
+    </header>
+
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
+    <ol class="chain" id="chain"></ol>
+
+    <footer class="rail-foot">
+      <div class="legend">
+        <span><i class="lg lg-done"></i>已完成</span>
+        <span><i class="lg lg-active"></i>进行中</span>
+        <span><i class="lg lg-wait"></i>等你回答</span>
+        <span><i class="lg lg-idle"></i>未进入</span>
+        <span><i class="lg lg-skip"></i>未走这条</span>
+      </div>
+      <p class="foot-note">链上顺序来自后端图结构；每格内容取自该轮真实响应。</p>
+    </footer>
+  </aside>
+
+  <!-- ============ 右栏：对话与输入 ============ -->
+  <main class="stage">
+    <div class="stage-head">
+      <div class="stage-title">
+        <span class="dot" id="stageDot"></span>
+        <h2 id="stageName">等待开始</h2>
+        <span class="stage-sub" id="stageSub">说出你最近困扰的一件事</span>
+      </div>
+      <div class="stage-actions">
+        <button class="btn btn-ghost" id="demoBtn">播放演示</button>
+        <button class="btn btn-ghost" id="resetBtn">新会话</button>
+      </div>
+    </div>
+
+    <div class="thread" id="thread">
+      <div class="empty" id="empty">
+        <p class="empty-lead">这是一个 8 阶段的 CBT 自助流程。</p>
+        <p class="empty-body">左侧会实时显示系统此刻走到哪一步、为什么走这一步。<br>你只需要回答问题。</p>
+        <div class="empty-chips">
+          <button class="chip" data-seed="最近总是觉得自己做什么都不行">最近总是觉得自己做什么都不行</button>
+          <button class="chip" data-seed="明天要汇报，我怕搞砸">明天要汇报，我怕搞砸</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="composer">
+      <div class="decision" id="decision" hidden>
+        <div class="decision-text">这条记录已整理好，是否保存为长期记录？</div>
+        <div class="decision-btns">
+          <button class="btn btn-primary" id="saveBtn">保存</button>
+          <button class="btn btn-quiet" id="discardBtn">不保存</button>
+        </div>
+      </div>
+      <form class="input-row" id="form">
+        <textarea id="input" rows="1" placeholder="说点什么…（Enter 发送，Shift+Enter 换行）"></textarea>
+        <button class="send" type="submit" id="sendBtn" aria-label="发送">
+          <svg viewBox="0 0 24 24"><path d="M4 12h13M11 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+      <div class="input-hint" id="inputHint"></div>
+    </div>
+  </main>
+
+</div>
+
+<script src="./app.js"></script>
+</body>
+</html>
